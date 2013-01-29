@@ -1,0 +1,17 @@
+{
+  "name": "gen",
+  "repo": "pfraces/gen",
+  "description": "game engine",
+  "version": "0.1.0",
+  "dependencies": {
+    "pfraces/jsl": "*",
+    "pfraces/dal": "*",
+    "pfraces/matrix": "*"
+  },
+  "scripts": ["index.js"],
+  "keywords": [
+    "game",
+    "engine"
+  ],
+  "license": "MIT"
+}
