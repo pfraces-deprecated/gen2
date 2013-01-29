@@ -7,6 +7,7 @@ var gen = module.exports = function (config) {
 };
 
 var private = {
+  self: {},
   board: {},
   cell: {},
   bg: 'lightblue'
@@ -18,6 +19,7 @@ var Gen = function (config) {
   this.map = matrix(this.board);
   this.keymap = config.keymap;
 
+  private.self = this;
   private.board = config.board;
   private.cell = config.cell;
 
@@ -33,7 +35,7 @@ Gen.prototype.draw = {
   board: function () {
     var board = private.board,
         cell = private.cell;
-    gen.canvas.size({
+    private.self.canvas.size({
       width: (board.width * cell.width).toString() + cell.unit,
       height: (board.height * cell.height).toString() + cell.unit
     }).
