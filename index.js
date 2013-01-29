@@ -26,7 +26,7 @@ var Gen = function (config) {
   dal(document.body).on('keypress', function (event) {
     var key = String.fromCharCode(event.keyCode);
     if (key in priv.self.keymap) {
-      priv.self.keymap[key]();
+      private.self.keymap[key]();
     }
   });
 };
