@@ -43,7 +43,7 @@ Gen.prototype.draw = {
 
     for (var y = 0; y < board.height; y++) {
       for (var x = 0; x < board.width; x++) {
-        this.draw.cell({ x: x, y: y });
+        this.cell({ x: x, y: y });
       };
     };
   },
