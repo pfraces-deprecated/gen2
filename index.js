@@ -16,20 +16,15 @@ var Gen = function (config) {
   this.board = config.board;
   this.canvas = dal(this.board.id);
   this.map = matrix(this.board);
+  this.keymap = config.keymap;
 
   private.board = config.board;
   private.cell = config.cell;
 
   this.canvas.on('keypress', function (event) {
     var key = String.fromCharCode(event.keyCode);
-    if (key === '8') {
-      if (config.onKeyUp) { config.onKeyUp(); }
-    } else if (key == '5') {
-      if (config.onKeyDown) { config.onKeyDown(); }
-    } else if (key == '4') {
-      if (config.onKeyLeft) { config.onKeyLeft(); }
-    } else if (key == '6') {
-      if (config.onKeyRight) { config.onKeyRight(); }
+    if (key in this.keymap) {
+      this.keymap[key]();
     }
   });
 };
