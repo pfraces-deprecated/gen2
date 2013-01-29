@@ -23,7 +23,7 @@ var Gen = function (config) {
   private.board = config.board;
   private.cell = config.cell;
 
-  this.canvas.on('keypress', function (event) {
+  dal(document.body).on('keypress', function (event) {
     var key = String.fromCharCode(event.keyCode);
     if (key in this.keymap) {
       this.keymap[key]();
