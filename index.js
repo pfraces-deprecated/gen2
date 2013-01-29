@@ -33,7 +33,7 @@ Gen.prototype.draw = {
   board: function () {
     var board = private.board,
         cell = private.cell;
-    this.canvas.size({
+    gen.canvas.size({
       width: (board.width * cell.width).toString() + cell.unit,
       height: (board.height * cell.height).toString() + cell.unit
     }).
