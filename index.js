@@ -71,7 +71,7 @@ Gen.prototype.draw = {
      */
     dal('board').add(cell);
     cell
-      .color({ bg: this.map.at(args).color })
+      .color({ bg: private.self.map.at(args).color })
       .move({
         x: (args.x * private.cell.width).toString() + private.cell.unit,
         y: (args.y * private.cell.height).toString() + private.cell.unit,

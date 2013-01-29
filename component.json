@@ -2,7 +2,7 @@
   "name": "gen",
   "repo": "pfraces/gen",
   "description": "game engine",
-  "version": "0.2.3",
+  "version": "0.2.4",
   "dependencies": {
     "pfraces/jsl": "*",
     "pfraces/dal": "*",
