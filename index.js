@@ -1,15 +1,13 @@
-var jsl = require("jsl"),
-    dal = require("dal"),
-    matrix = require("matrix");
+var jsl = require('jsl'),
+    dal = require('dal'),
+    matrix = require('matrix'),
+    shortcut = require('shortcut');
 
 var gen = module.exports = function (config) {
   return new Gen(config);
 };
 
 var private = {
-  self: {},
-  board: {},
-  cell: {},
   bg: 'lightblue'
 };
 
@@ -17,17 +15,34 @@ var Gen = function (config) {
   this.board = config.board;
   this.canvas = dal(this.board.id);
   this.map = matrix(this.board);
-  this.keymap = config.keymap;
+  this.keymap = [];
 
   private.self = this;
   private.board = config.board;
   private.cell = config.cell;
+};
 
-  dal(document.body).on('keypress', function (event) {
-    var key = String.fromCharCode(event.keyCode);
-    if (key in private.self.keymap) {
-      private.self.keymap[key]();
-    }
+/**
+ * Se espera que la instancia tenga un metodo llamado keymap, que contenga
+ * el mapa de teclas (tecla -> acción)
+ * 
+ * Se debería aportar un setter o algo parecido
+ * 
+ * Se ha implementado así porque para usar metodos del juego, se necesita
+ * primero crear el objeto juego:
+ *
+ * tetris.keymap({
+ *   '8': tetris.up,
+ *   '5': tetris.down,
+ *   '4': tetris.left,
+ *   '6': tetris.right
+ * });
+ */
+Gen.prototype.start = function () {
+  private.self.draw.board()
+  var keymap = private.self.keymap;
+  Object.keys(keymap).forEach(function (key) {
+    shortcut.on(key, keymap[key]);
   });
 };
 
