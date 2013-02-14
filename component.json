@@ -2,12 +2,11 @@
   "name": "gen",
   "repo": "pfraces/gen",
   "description": "game engine",
-  "version": "0.3.0",
+  "version": "0.4.0",
   "dependencies": {
-    "pfraces/jsl": "*",
-    "pfraces/dal": "*",
-    "pfraces/matrix": "*",
-    "pfraces/shortcut": "*"
+    "bojs/shortcut": "*",
+    "genjs/actor": "*",
+    "genjs/render": "*"
   },
   "scripts": ["index.js"],
   "keywords": [
