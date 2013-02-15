@@ -19,5 +19,7 @@ Gen.prototype.keymap = function (keymap) {
 };
 
 Gen.prototype.actor = function (pos, members) {
-  this.actors.push(actor(pos, members));
+  var a = actor(pos, members);
+  this.actors.push(a);
+  return a;
 };
