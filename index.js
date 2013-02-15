@@ -1,4 +1,5 @@
-var shortcut = require('shortcut'),
+var extend = require('extend'),
+    shortcut = require('shortcut'),
     actor = require('actor'),
     render = require('render');
     
@@ -8,8 +9,8 @@ module.exports = function (config) {
 };
 
 var Gen = function (config) {
-  this.render = render(config);
   this.actors = [];
+  this.render = render(config, this.actors);
 };
 
 Gen.prototype.keymap = function (keymap) {
@@ -18,8 +19,12 @@ Gen.prototype.keymap = function (keymap) {
   });
 };
 
-Gen.prototype.actor = function (pos, members) {
-  var a = actor(pos, members);
+Gen.prototype.actor = function (pos) {
+  var a = actor(pos, [{
+    el: this.render.tile('blue'),
+    x: 0,
+    y: 0
+  }]);
   this.actors.push(a);
   return a;
 };
