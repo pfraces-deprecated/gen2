@@ -3,9 +3,7 @@ var shortcut = require('shortcut'),
     render = require('render');
     
 
-module.exports = gen;
-
-var gen = function (config) {
+var gen = module.exports = function (config) {
   return new Gen(config);
 };
 
