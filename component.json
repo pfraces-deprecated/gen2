@@ -2,7 +2,7 @@
   "name": "gen",
   "repo": "genjs/gen",
   "description": "game engine",
-  "version": "0.8.0",
+  "version": "0.8.1",
   "dependencies": {
     "corejs/extend": "*",
     "genjs/actor": "*",

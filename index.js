@@ -26,13 +26,14 @@ var Gen = function (config) {
 };
 
 Gen.prototype.actor = function (x, y, shape) {
-  var a = actor({ x: x, y: y }),
+  var gen = this,
+      a = actor({ x: x, y: y }),
       s = matrix(shape);
 
   s.each(function (x, y, cell) {
     if (cell) {
       a.add({
-        tile: this.render.tile(),
+        tile: gen.render.tile(),
         x: x,
         y: y
       });
