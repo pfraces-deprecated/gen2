@@ -12,9 +12,9 @@ var Gen = function (config) {
   this.render = render(config, this.actors);
 };
 
-Gen.prototype.actor = function (pos) {
+Gen.prototype.actor = function (pos, color) {
   var a = actor(pos, [{
-    el: this.render.tile('blue'),
+    el: this.render.tile(color),
     x: 0,
     y: 0
   }]);
