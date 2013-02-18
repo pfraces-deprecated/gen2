@@ -56,16 +56,19 @@ var collisionDetection = function (matrix, actor, actors) {
           x: actor.x + member.x,
           y: actor.y + member.y
         },
-        target = matrix.at(pos),
-        targetType = type(target);
+        target = matrix.at(pos);
 
-    if (targetType.isNull) {
-      matrix.at(pos, actor.id);
-    } else if (targetType.isUndefined) {
-      collisionHandler(actors[actor.id]);
-    } else {
-      collisionHandler(actors[actor.id], actors[target]);
-    }
+    type(target).handle({
+      'nil': function () {
+        matrix.at(pos, actor.id);
+      },
+      'undef': function () {
+        collisionHandler(actors[actor.id]);
+      },
+      'default': function () {
+        collisionHandler(actors[actor.id], actors[target]);
+      }
+    });
   });
 }
 
