@@ -2,13 +2,13 @@
   "name": "gen",
   "repo": "genjs/gen",
   "description": "game engine",
-  "version": "0.7.10",
+  "version": "0.8.0",
   "dependencies": {
     "corejs/extend": "*",
-    "corejs/type": "*",
-    "corejs/matrix": "*",
     "genjs/actor": "*",
-    "genjs/render": "*"
+    "genjs/render": "*",
+    "corejs/matrix": "*",
+    "corejs/type": "*"
   },
   "scripts": ["index.js"],
   "keywords": [

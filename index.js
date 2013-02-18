@@ -25,12 +25,19 @@ var Gen = function (config) {
   }));
 };
 
-Gen.prototype.actor = function (pos) {
-  var a = actor(pos, [{
+Gen.prototype.actor = function (x, y, shape) {
+  var a = actor({ x: x, y: y }),
+      s = matrix(shape);
+
+  s.each(function (x, y, cell) {
+    if (cell) {
+      a.add({
         tile: this.render.tile(),
-        x: 0,
-        y: 0
-      }]);
+        x: x,
+        y: y
+      });
+    }
+  });
 
   this.actors.push(a);
   return a;
