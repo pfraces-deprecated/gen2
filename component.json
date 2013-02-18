@@ -2,9 +2,10 @@
   "name": "gen",
   "repo": "pfraces/gen",
   "description": "game engine",
-  "version": "0.7.5",
+  "version": "0.7.6",
   "dependencies": {
     "corejs/extend": "*",
+    "corejs/type": "*",
     "corejs/matrix": "*",
     "genjs/actor": "*",
     "genjs/render": "*"

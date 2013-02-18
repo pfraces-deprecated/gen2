@@ -1,7 +1,8 @@
 var extend = require('extend'),
     actor = require('actor'),
     render = require('render'),
-    matrix = require('matrix');
+    matrix = require('matrix'),
+    type = require('type');
     
 
 module.exports = function (config) {
@@ -47,12 +48,15 @@ var frame = function (matrix, actors) {
             x: actor.x + member.x,
             y: actor.y + member.y
           },
-          target = matrix.at(pos);
+          target = matrix.at(pos),
+          targetType = type(target);
 
-      if (target) {
-        collisionHandler(actors[actor.id], actors[target]);
-      } else {
+      if (targetType.isNull) {
         matrix.at(pos, actor.id);
+      } else if (targetType.isUndefined) {
+        collisionHandler(actors[actor.id]);
+      } else {
+        collisionHandler(actors[actor.id], actors[target]);
       }
     });
   });
