@@ -39,7 +39,7 @@ Gen.prototype.actor = function (pos) {
 var frame = function (matrix, actors) {
   actors.forEach(function (actor) {
     actor.act(function () {
-      collisionDetection(actor);
+      collisionDetection(matrix, actor);
     });
   });
 
@@ -50,7 +50,7 @@ var frame = function (matrix, actors) {
   });
 };
 
-var collisionDetection = function (actor) {
+var collisionDetection = function (matrix, actor) {
   actor.members.forEach(function (member) {
     var pos = {
           x: actor.x + member.x,
