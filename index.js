@@ -19,7 +19,7 @@ var Gen = function (config) {
 
 Gen.prototype.actor = function (pos) {
   var a = actor(pos, [{
-    el: this.render.tile(),
+    tile: this.render.tile(),
     x: 0,
     y: 0
   }]);
@@ -34,10 +34,7 @@ var frame = function (cell, actors) {
 
   actors.forEach(function (actor) {
     actor.members.forEach(function (member) {
-      member.el.pos({
-        x: ((actor.x + member.x) * cell).toString() + 'px',
-        y: ((actor.y + member.y) * cell).toString() + 'px'
-      })
+      member.tile.move(actor.x + member.x, actor.y + member.y)
     });
   });
 }
