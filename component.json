@@ -2,7 +2,7 @@
   "name": "gen",
   "repo": "pfraces/gen",
   "description": "game engine",
-  "version": "0.7.6",
+  "version": "0.7.7",
   "dependencies": {
     "corejs/extend": "*",
     "corejs/type": "*",

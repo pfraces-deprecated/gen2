@@ -38,36 +38,36 @@ Gen.prototype.actor = function (pos) {
 
 var frame = function (matrix, actors) {
   actors.forEach(function (actor) {
-
-    /* game defined actions */
-    actor.act();
-
-    /* collision detection */
-    actor.members.forEach(function (member) {
-      var pos = {
-            x: actor.x + member.x,
-            y: actor.y + member.y
-          },
-          target = matrix.at(pos),
-          targetType = type(target);
-
-      if (targetType.isNull) {
-        matrix.at(pos, actor.id);
-      } else if (targetType.isUndefined) {
-        collisionHandler(actors[actor.id]);
-      } else {
-        collisionHandler(actors[actor.id], actors[target]);
-      }
+    actor.act(function () {
+      collisionDetection(actor);
     });
   });
 
-  /* render update */
   actors.forEach(function (actor) {
     actor.members.forEach(function (member) {
       member.tile.move(actor.x + member.x, actor.y + member.y)
     });
   });
 };
+
+var collisionDetection = function (actor) {
+  actor.members.forEach(function (member) {
+    var pos = {
+          x: actor.x + member.x,
+          y: actor.y + member.y
+        },
+        target = matrix.at(pos),
+        targetType = type(target);
+
+    if (targetType.isNull) {
+      matrix.at(pos, actor.id);
+    } else if (targetType.isUndefined) {
+      collisionHandler(actors[actor.id]);
+    } else {
+      collisionHandler(actors[actor.id], actors[target]);
+    }
+  });
+}
 
 var collisionHandler = function (last, first) {
   last.move.back();
