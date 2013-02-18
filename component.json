@@ -1,6 +1,6 @@
 {
   "name": "gen",
-  "repo": "pfraces/gen",
+  "repo": "genjs/gen",
   "description": "game engine",
   "version": "0.7.9",
   "dependencies": {
