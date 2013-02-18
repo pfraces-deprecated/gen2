@@ -9,6 +9,7 @@ module.exports = function (config) {
 
 var Gen = function (config) {
   var self = this;
+  this.cell = config.cell;  
   this.actors = [];
   this.render = render(extend(config, {
     frame: function () {
