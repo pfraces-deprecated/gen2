@@ -9,11 +9,10 @@ module.exports = function (config) {
 
 var Gen = function (config) {
   var self = this;
-  this.cell = config.cell;  
   this.actors = [];
   this.render = render(extend(config, {
     frame: function () {
-      frame(self.actors);
+      frame(config.cell, self.actors);
     }
   }));
 };
@@ -28,7 +27,7 @@ Gen.prototype.actor = function (pos) {
   return a;
 };
 
-var frame = function (actors) {
+var frame = function (cell, actors) {
   actors.forEach(function (actor) {
     actor.act();
   });
@@ -36,8 +35,8 @@ var frame = function (actors) {
   actors.forEach(function (actor) {
     actor.members.forEach(function (member) {
       member.el.pos({
-        x: ((actor.x + member.x) * self.cell).toString() + 'px',
-        y: ((actor.y + member.y) * self.cell).toString() + 'px'
+        x: ((actor.x + member.x) * cell).toString() + 'px',
+        y: ((actor.y + member.y) * cell).toString() + 'px'
       })
     });
   });
