@@ -62,15 +62,13 @@ var frame = function (matrix, actors) {
 
 var collisionDetection = function (matrix, actor, actors) {
   actor.members.forEach(function (member) {
-    var pos = {
-          x: actor.x + member.x,
-          y: actor.y + member.y
-        },
-        target = matrix.at(pos);
+    var x = actor.x + member.x,
+        y = actor.y + member.y,
+        target = matrix.at(x, y);
 
     type(target).handle({
       'nil': function () {
-        matrix.at(pos, actor.id);
+        matrix.at(x, y, actor.id);
       },
       'undef': function () {
         collisionHandler(actors[actor.id]);
