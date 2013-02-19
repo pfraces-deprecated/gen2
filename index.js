@@ -23,6 +23,8 @@ var Gen = function (config) {
       frame(gen.matrix, gen.actors);
     }
   }));
+
+  this.playPause = this.render.playPause;
 };
 
 Gen.prototype.actor = function (x, y, shape) {
