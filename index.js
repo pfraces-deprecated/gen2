@@ -10,7 +10,7 @@ module.exports = function (config) {
 };
 
 var Gen = function (config) {
-  var self = this;
+  var gen = this;
   this.actors = [];
   
   this.matrix = matrix({
@@ -20,7 +20,7 @@ var Gen = function (config) {
 
   this.render = render(extend(config, {
     frame: function () {
-      frame(self.matrix, self.actors);
+      frame(gen.matrix, gen.actors);
     }
   }));
 };
@@ -29,6 +29,8 @@ Gen.prototype.actor = function (x, y, shape) {
   var gen = this,
       a = actor({ x: x, y: y }),
       s = matrix(shape);
+
+  this.actors.push(a);
 
   s.each(function (x, y, cell) {
     if (cell) {
@@ -40,7 +42,7 @@ Gen.prototype.actor = function (x, y, shape) {
     }
   });
 
-  this.actors.push(a);
+  collisionDetection(gen.matrix, a, gen.actors);
   return a;
 };
 
