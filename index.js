@@ -29,7 +29,7 @@ var Gen = function (config) {
 
 Gen.prototype.actor = function (x, y, shape) {
   var gen = this,
-      a = actor({ x: x, y: y }),
+      a = actor(x, y),
       s = matrix(shape);
 
   this.actors.push(a);
