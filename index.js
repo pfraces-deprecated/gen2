@@ -57,15 +57,15 @@ var frame = function (matrix, actors) {
 
   actors.forEach(function (actor) {
     actor.members.forEach(function (member) {
-      member.tile.move(actor.x + member.x, actor.y + member.y)
+      member.tile.move(actor.x() + member.x, actor.y() + member.y)
     });
   });
 };
 
 var collisionDetection = function (matrix, actor, actors) {
   actor.members.forEach(function (member) {
-    var x = actor.x + member.x,
-        y = actor.y + member.y,
+    var x = actor.x() + member.x,
+        y = actor.y() + member.y,
         target = matrix.at(x, y);
 
     type(target).handle({
