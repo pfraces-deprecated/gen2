@@ -10,7 +10,7 @@ module.exports = function (config) {
 };
 
 var Gen = function (config) {
-  var gen = this;
+  var self = this;
   this.actors = [];
   
   this.matrix = matrix({
@@ -20,7 +20,7 @@ var Gen = function (config) {
 
   this.render = render(extend(config, {
     frame: function () {
-      frame(gen.matrix, gen.actors);
+      frame(self.actors);
     }
   }));
 
@@ -28,31 +28,33 @@ var Gen = function (config) {
 };
 
 Gen.prototype.actor = function (x, y, shape) {
-  var gen = this,
+  var self = this,
       a = actor(x, y),
       s = matrix(shape);
+
+  a.actions.after(function () {
+    collisionDetection(self.matrix, a, self.actors);
+  });
 
   this.actors.push(a);
 
   s.each(function (x, y, cell) {
     if (cell) {
       a.add({
-        tile: gen.render.tile(),
+        tile: self.render.tile(),
         x: x,
         y: y
       });
     }
   });
 
-  collisionDetection(gen.matrix, a, gen.actors);
+  collisionDetection(self.matrix, a, self.actors);
   return a;
 };
 
-var frame = function (matrix, actors) {
+var frame = function (actors) {
   actors.forEach(function (actor) {
-    actor.act(function () {
-      collisionDetection(matrix, actor, actors);
-    });
+    actor.actions.run();
   });
 
   actors.forEach(function (actor) {
